@@ -53,30 +53,6 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
-    if (player.isTouching(bullet_1)) {
-        game.removeLife(1)
-        basic.pause(bullet_speed)
-    }
-    if (player.isTouching(bullet_2)) {
-        game.removeLife(1)
-        basic.pause(bullet_speed)
-    }
-    if (game.score() > 4) {
-        basic.pause(500)
-        if (player.isTouching(bullet_3)) {
-            game.removeLife(1)
-            basic.pause(bullet_speed)
-        }
-    }
-    if (game.score() > 8) {
-        basic.pause(500)
-        if (player.isTouching(bullet_4)) {
-            game.removeLife(1)
-            basic.pause(bullet_speed)
-        }
-    }
-})
-basic.forever(function () {
     if (game.score() > 4) {
         _0 = 0
         _1 = 1
@@ -108,6 +84,33 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
+    if (!(game.isGameOver())) {
+        if (player.isTouching(bullet_2)) {
+            game.removeLife(1)
+            basic.pause(bullet_speed)
+        }
+    }
+})
+basic.forever(function () {
+    if (!(game.isGameOver())) {
+        if (game.score() > 8) {
+            basic.pause(500)
+            if (player.isTouching(bullet_4)) {
+                game.removeLife(1)
+                basic.pause(bullet_speed)
+            }
+        }
+    }
+})
+basic.forever(function () {
+    if (!(game.isGameOver())) {
+        if (player.isTouching(bullet_1)) {
+            game.removeLife(1)
+            basic.pause(bullet_speed)
+        }
+    }
+})
+basic.forever(function () {
     if (game.score() > 8) {
         _0 = 0
         _1 = 4
@@ -124,6 +127,17 @@ basic.forever(function () {
         bullet_4 = game.createSprite(randint(0, 4), 0)
         for (let index = 0; index < 10000000000; index++) {
             basic.pause(5000)
+        }
+    }
+})
+basic.forever(function () {
+    if (!(game.isGameOver())) {
+        if (game.score() > 4) {
+            basic.pause(500)
+            if (player.isTouching(bullet_3)) {
+                game.removeLife(1)
+                basic.pause(bullet_speed)
+            }
         }
     }
 })
