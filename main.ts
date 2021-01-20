@@ -40,12 +40,10 @@ _0 = 0
 let _1 = 2
 let _2 = 3
 let _3 = 5
-let _4 = 0
-let _5 = 4
 bullet_speed = 1500
 game.setLife(3)
-bullet_1 = game.createSprite(randint(0, 1), 0)
-bullet_2 = game.createSprite(randint(2, 4), 0)
+bullet_1 = game.createSprite(0, 0)
+bullet_2 = game.createSprite(4, 0)
 player = game.createSprite(2, 3)
 basic.forever(function () {
     if (!(game.isGameOver())) {
@@ -54,7 +52,7 @@ basic.forever(function () {
             music.playTone(131, music.beat(BeatFraction.Quarter))
             bullet_1.change(LedSpriteProperty.Y, 1)
             bullet_2.change(LedSpriteProperty.Y, 1)
-            if (_0 == 1) {
+            if (game.score() >= 6) {
                 bullet_3.change(LedSpriteProperty.Y, 1)
                 bullet_4.change(LedSpriteProperty.Y, 1)
             }
@@ -64,17 +62,13 @@ basic.forever(function () {
         bullet_2.set(LedSpriteProperty.X, randint(_2, _3))
         bullet_1.set(LedSpriteProperty.Y, 0)
         bullet_2.set(LedSpriteProperty.Y, 0)
-        if (_0 == 1) {
-            bullet_3.set(LedSpriteProperty.X, randint(_4, _5))
-            bullet_4.set(LedSpriteProperty.X, randint(_4, _5))
+        if (game.score() >= 7) {
+            bullet_3.set(LedSpriteProperty.X, randint(0, 4))
+            bullet_4.set(LedSpriteProperty.X, randint(0, 4))
             bullet_3.set(LedSpriteProperty.Y, 0)
             bullet_4.set(LedSpriteProperty.Y, 0)
         }
         bullet_speed += -100
-        if (bullet_speed < 750) {
-            basic.pause(1000)
-            bullet_speed += 18
-        }
     }
 })
 basic.forever(function () {
@@ -84,21 +78,22 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
-    basic.pause(500)
     if (game.score() == 6) {
-        bullet_3 = game.createSprite(randint(0, 4), 0)
-        bullet_4 = game.createSprite(randint(0, 4), 0)
-        bullet_1 = game.createSprite(randint(0, 4), 0)
-        bullet_2 = game.createSprite(randint(0, 4), 0)
         _02 = 0
         _1 = 4
         _2 = 0
         _3 = 4
-        _0 = 1
-        basic.pause(5000)
-    } else {
-        for (let index = 0; index < 99; index++) {
+        bullet_3 = game.createSprite(randint(0, 4), 0)
+        bullet_4 = game.createSprite(randint(0, 4), 0)
+        for (let index = 0; index < 4; index++) {
             basic.pause(5000)
         }
+    }
+})
+basic.forever(function () {
+    basic.pause(1000)
+    if (bullet_speed < 750) {
+        basic.pause(1000)
+        bullet_speed += 18
     }
 })
